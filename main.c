@@ -33,8 +33,9 @@ int main(int argc, char** argv){
     ret = fp_dev_supports_imaging(scanner);
     if (!ret) printf("Device doesn't support imaging.\n");
 
-    fp_dev_img_capture(scanner, 0, &img);
+    ret = fp_dev_img_capture(scanner, 0, &img);
     if (ret) printf("there was a problem.\n");
+    fp_img_standardize(img);
     fp_img_save_to_file(img, argv[1]);
 
     printf("Device: %lu\nDriver: %lu", (long unsigned int) scanner, (long unsigned int) driver);
